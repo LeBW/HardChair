@@ -1,6 +1,5 @@
 package fudan.se.lab2.security.jwt;
 
-import fudan.se.lab2.security.SecurityConstant;
 import fudan.se.lab2.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -22,17 +21,19 @@ public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = -3839549913040578986L;
 
-    public static final long JWT_TOKEN_VALIDITY = SecurityConstant.EXPIRATION_TIME;
-    private static final String secret = SecurityConstant.SECRET;
-    private static final SignatureAlgorithm signatureAlgorithm = SecurityConstant.SIGNATURE_ALGORITHM;
+    private JwtConfigProperties jwtConfigProperties;
+
+    public JwtTokenUtil(JwtConfigProperties jwtConfigProperties) {
+        this.jwtConfigProperties = jwtConfigProperties;
+    }
 
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
         return Jwts.builder().addClaims(claims)
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
-                .signWith(signatureAlgorithm, secret).compact();
+                .setExpiration(new Date(System.currentTimeMillis() + jwtConfigProperties.getValidity()))
+                .signWith(SignatureAlgorithm.HS512, jwtConfigProperties.getSecret()).compact();
     }
 
     public String getUsernameFromToken(String jwtToken) {
@@ -54,7 +55,7 @@ public class JwtTokenUtil implements Serializable {
     }
 
     private Claims getAllClaimsFromToken(String jwtToken) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(jwtToken).getBody();
+        return Jwts.parser().setSigningKey(jwtConfigProperties.getSecret()).parseClaimsJws(jwtToken).getBody();
     }
 
 
