@@ -1,22 +1,19 @@
 package fudan.se.lab2.service;
 
-import fudan.se.lab2.config.jwt.JwtTokenUtil;
+import fudan.se.lab2.exception.UsernameHasBeenRegisteredException;
+import fudan.se.lab2.security.jwt.JwtTokenUtil;
 import fudan.se.lab2.domain.User;
 import fudan.se.lab2.repository.AuthorityRepository;
 import fudan.se.lab2.repository.UserRepository;
-import fudan.se.lab2.utils.RegistrationForm;
+import fudan.se.lab2.controller.request.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 /**
  * @author LBW
@@ -38,28 +35,24 @@ public class AuthService {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
-    public User register(RegistrationForm form) {
-        if (userRepository.findByUsername(form.getUsername()) != null) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "username '" + form.getUsername() + "' has been registered");
+    public User register(RegisterRequest request) {
+        if (userRepository.findByUsername(request.getUsername()) != null) {
+            throw new UsernameHasBeenRegisteredException(request.getUsername());
         }
-        User user = form.toUser(passwordEncoder, authorityRepository);
+        User user = request.toUser(passwordEncoder, authorityRepository);
         return userRepository.save(user);
     }
 
     public String login(String username, String password) {
         User user = userRepository.findByUsername(username);
         if (user == null) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "user not found");
+            throw new UsernameNotFoundException("User: '" + username + "' not found.");
         }
 
         UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
 
-        try {
-            final Authentication authentication = authenticationManager.authenticate(upToken);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        } catch (Exception e) {
-            throw new HttpClientErrorException(HttpStatus.FORBIDDEN, "password incorrect");
-        }
+        final Authentication authentication = authenticationManager.authenticate(upToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return jwtTokenUtil.generateToken(user);
 

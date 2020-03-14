@@ -1,8 +1,7 @@
-package fudan.se.lab2.config.jwt;
+package fudan.se.lab2.security.jwt;
 
-import fudan.se.lab2.config.SecurityConstant;
+import fudan.se.lab2.security.SecurityConstant;
 import fudan.se.lab2.domain.User;
-import fudan.se.lab2.service.JwtUserDetailsService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

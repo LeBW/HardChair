@@ -1,13 +1,13 @@
-package fudan.se.lab2.utils;
+package fudan.se.lab2.controller.request;
 
 /**
  * @author LBW
  */
-public class LoginForm {
+public class LoginRequest {
     private String username;
     private String password;
 
-    public LoginForm() {}
+    public LoginRequest() {}
 
 
     public String getUsername() {

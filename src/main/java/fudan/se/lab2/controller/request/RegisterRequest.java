@@ -1,4 +1,4 @@
-package fudan.se.lab2.utils;
+package fudan.se.lab2.controller.request;
 
 import fudan.se.lab2.domain.Authority;
 import fudan.se.lab2.domain.User;
@@ -11,15 +11,15 @@ import java.util.stream.Collectors;
 /**
  * @author LBW
  */
-public class RegistrationForm {
+public class RegisterRequest {
     private String username;
     private String password;
     private String fullname;
     private Set<String> authorities;
 
-    public RegistrationForm() {}
+    public RegisterRequest() {}
 
-    public RegistrationForm(String username, String password, String fullname, Set<String> authorities) {
+    public RegisterRequest(String username, String password, String fullname, Set<String> authorities) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;

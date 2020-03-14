@@ -1,4 +1,4 @@
-package fudan.se.lab2.config.jwt;
+package fudan.se.lab2.security.jwt;
 
 import fudan.se.lab2.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;

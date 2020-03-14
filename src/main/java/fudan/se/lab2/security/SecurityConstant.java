@@ -1,4 +1,4 @@
-package fudan.se.lab2.config;
+package fudan.se.lab2.security;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 

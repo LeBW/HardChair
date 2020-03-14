@@ -1,10 +1,9 @@
 package fudan.se.lab2.controller;
 
-import fudan.se.lab2.domain.User;
 import fudan.se.lab2.service.AuthService;
 import fudan.se.lab2.service.JwtUserDetailsService;
-import fudan.se.lab2.utils.LoginForm;
-import fudan.se.lab2.utils.RegistrationForm;
+import fudan.se.lab2.controller.request.LoginRequest;
+import fudan.se.lab2.controller.request.RegisterRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,18 +33,18 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegistrationForm form) {
-        logger.debug("RegistrationForm: " + form.toString());
+    public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
+        logger.debug("RegistrationForm: " + request.toString());
 
-        return ResponseEntity.ok(authService.register(form));
+        return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginForm form) {
-        logger.debug("LoginForm: " + form.toString());
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        logger.debug("LoginForm: " + request.toString());
 
-        String token = authService.login(form.getUsername(), form.getPassword());
-        UserDetails userDetails = userDetailsService.loadUserByUsername(form.getUsername());
+        String token = authService.login(request.getUsername(), request.getPassword());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
         Map<String, Object> responseMap = new HashMap<>();
         responseMap.put("userDetails", userDetails);
         responseMap.put("token", token);

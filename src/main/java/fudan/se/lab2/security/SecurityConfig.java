@@ -1,6 +1,6 @@
-package fudan.se.lab2.config;
+package fudan.se.lab2.security;
 
-import fudan.se.lab2.config.jwt.JwtRequestFilter;
+import fudan.se.lab2.security.jwt.JwtRequestFilter;
 import fudan.se.lab2.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
