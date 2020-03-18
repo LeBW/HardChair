@@ -24,17 +24,41 @@ public class User implements UserDetails {
 
     private String password;
     private String fullname;
+    private String email;
+    private String organization;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Authority> authorities = new HashSet<>();
 
 
     public User() {}
-    public User(String username, String password, String fullname, Set<Authority> authorities) {
+    public User(String username, String password, String fullname, String email, String organization, Set<Authority> authorities) {
         this.username = username;
         this.password= password;
         this.fullname = fullname;
+        this.email = email;
+        this.organization = organization;
         this.authorities = authorities;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 
     @Override

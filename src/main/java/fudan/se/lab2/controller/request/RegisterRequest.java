@@ -15,16 +15,11 @@ public class RegisterRequest {
     private String username;
     private String password;
     private String fullname;
+    private String email;
+    private String organization;
     private Set<String> authorities;
 
     public RegisterRequest() {}
-
-    public RegisterRequest(String username, String password, String fullname, Set<String> authorities) {
-        this.username = username;
-        this.password = password;
-        this.fullname = fullname;
-        this.authorities = authorities;
-    }
 
     public User toUser(PasswordEncoder encoder, AuthorityRepository authorityRepository) {
         // map Set<String> to Set<Authority>. (save authority if not exists)
@@ -33,7 +28,7 @@ public class RegisterRequest {
                         authorityText -> getOrCreateAuthority(authorityText, authorityRepository))
                 .collect(Collectors.toSet());
         //encrypt password
-        return new User(username, encoder.encode(password), fullname, userAuthorities);
+        return new User(username, encoder.encode(password), fullname, email, organization, userAuthorities);
     }
 
     public String getUsername() {
@@ -85,6 +80,22 @@ public class RegisterRequest {
             authorityRepository.save(authority);
         }
         return authority;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 }
 
