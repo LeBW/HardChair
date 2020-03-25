@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ConferenceRepository extends CrudRepository<Conference, Long> {
-
+    public Conference findByShortName(String shortName);
 }

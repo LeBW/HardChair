@@ -1,11 +1,12 @@
 package fudan.se.lab2.domain;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author LBW
@@ -34,7 +35,7 @@ public class User implements UserDetails {
     public User() {}
     public User(String username, String password, String fullname, String email, String organization, Set<Authority> authorities) {
         this.username = username;
-        this.password= password;
+        this.password = password;
         this.fullname = fullname;
         this.email = email;
         this.organization = organization;
