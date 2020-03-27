@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>fudan.se</groupId>
-    <artifactId>lab2</artifactId>
+    <artifactId>hard-chair</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lab2</name>
-    <description>2020 Fudan Software Engineering Lab2</description>
+    <name>hard-chair</name>
+    <description>2020 Fudan Software Engineering Lab</description>
 
     <properties>
         <java.version>1.8</java.version>
