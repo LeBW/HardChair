@@ -45,6 +45,7 @@ public class HardChairApplication {
                     userRepository.save(admin);
                 }
                 System.out.println(adminAuthority.getUsers());
+
             }
 
             private Authority getOrCreateAuthority(String authorityText, AuthorityRepository authorityRepository) {

@@ -1,5 +1,6 @@
 package fudan.se.hardchair.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -24,12 +25,19 @@ public class User implements UserDetails {
     private String username;
 
     private String password;
+
     private String fullname;
+
     private String email;
+
     private String organization;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Authority> authorities = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private Set<ConferenceUser> conferenceUserSet = new HashSet<>();
 
 
     public User() {}
@@ -123,5 +131,13 @@ public class User implements UserDetails {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public Set<ConferenceUser> getConferenceUserSet() {
+        return conferenceUserSet;
+    }
+
+    public void setConferenceUserSet(Set<ConferenceUser> conferenceUsers) {
+        this.conferenceUserSet = conferenceUsers;
     }
 }

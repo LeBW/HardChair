@@ -11,7 +11,7 @@
     <groupId>fudan.se</groupId>
     <artifactId>hard-chair</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hard-chair</name>
+    <name>Hard Chair</name>
     <description>2020 Fudan Software Engineering Lab</description>
 
     <properties>
