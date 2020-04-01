@@ -3,14 +3,17 @@ GET http://localhost:8080/conferences
 Accept: application/json
 
 ###
+GET http://localhost:8080/conferences/34
+Accept: application/json
 
+###
 POST http://localhost:8080/conferences
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsaWJ3IiwiaWF0IjoxNTg1NzMyMzI5LCJleHAiOjE1ODU3NTAzMjl9.7QkwrQjTlYm1vogaFhXuCMf9IgW4Ey3zb78xn1-ebc22kwP7SFrfunqcIT9dDBlpvPvCqbbSiUH69QGKe_58iQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsaWJ3IiwiaWF0IjoxNTg1NzUxMDU4LCJleHAiOjE1ODU3NjkwNTh9.Y-AbFYHq29xyzcXqqD4NR9HoE2J-FOlzTNc8fhhlo8JZ9abU-gerwLmqvnbFFGYEs-qw1uaM3PlUDOwyaxI2mg
 
 {
-  "shortName": "ASE",
-  "fullName": "Axxxxxxasfads",
+  "shortName": "ICSE",
+  "fullName": "international Conference on Software Engineering",
   "holdingPlace": "Shanghai",
   "submitDeadline": "2019-04-17",
   "publishTime": "2019-06-01",

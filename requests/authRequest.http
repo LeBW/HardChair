@@ -9,7 +9,7 @@ Content-Type: application/json
   "email": "27091925@qq.com",
   "organization": "Fudan University",
   "authorities": [
-    "Contributor"
+    "User"
   ]
 }
 

@@ -27,16 +27,14 @@ public class HardChairApplication {
             public void run(String... args) throws Exception {
                 // Create authorities if not exist.
                 Authority adminAuthority = getOrCreateAuthority("Admin", authorityRepository);
-                Authority chairAuthority = getOrCreateAuthority("Chair", authorityRepository);
-                Authority pcmAuthority = getOrCreateAuthority("PC Member", authorityRepository);
-                Authority authorAuthority = getOrCreateAuthority("Author", authorityRepository);
+                Authority chairAuthority = getOrCreateAuthority("User", authorityRepository);
 
                 // Create a admin if not exists.
                 if (userRepository.findByUsername("admin") == null) {
                     User admin = new User(
                             "admin",
                             passwordEncoder.encode("password"),
-                            "libowen",
+                            "李博文",
                             "libw521@qq.com",
                             "Fudan University",
                             new HashSet<>(Collections.singletonList(adminAuthority))
@@ -44,7 +42,7 @@ public class HardChairApplication {
                     adminAuthority.addUser(admin);
                     userRepository.save(admin);
                 }
-                System.out.println(adminAuthority.getUsers());
+                //System.out.println(adminAuthority.getUsers());
 
             }
 

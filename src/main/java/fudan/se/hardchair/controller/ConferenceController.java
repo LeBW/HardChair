@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -27,6 +28,11 @@ public class ConferenceController {
     @GetMapping("/conferences")
     public ResponseEntity<?> getAllConferences() {
         return ResponseEntity.ok().body(conferenceService.getAllConferences());
+    }
+
+    @GetMapping("/conferences/{id}")
+    public ResponseEntity<?> getConferenceById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(conferenceService.getConferenceById(id));
     }
 
     @PostMapping("/conferences")

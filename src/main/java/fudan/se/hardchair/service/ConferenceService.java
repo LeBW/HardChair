@@ -26,6 +26,10 @@ public class ConferenceService {
         return conferenceRepository.findAll();
     }
 
+    public Conference getConferenceById(Long id) {
+        return conferenceRepository.findById(id).get();
+    }
+
     public Conference addConference(String username, Conference conference) {
 
         User applyUser = userRepository.findByUsername(username);
