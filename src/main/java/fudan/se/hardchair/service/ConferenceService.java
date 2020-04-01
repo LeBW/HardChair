@@ -27,8 +27,6 @@ public class ConferenceService {
     }
 
     public Conference addConference(String username, Conference conference) {
-        //Test
-        username = "admin";
 
         User applyUser = userRepository.findByUsername(username);
 

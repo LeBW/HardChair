@@ -1,0 +1,21 @@
+###
+GET http://localhost:8080/conferences
+Accept: application/json
+
+###
+
+POST http://localhost:8080/conferences
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsaWJ3IiwiaWF0IjoxNTg1NzMyMzI5LCJleHAiOjE1ODU3NTAzMjl9.7QkwrQjTlYm1vogaFhXuCMf9IgW4Ey3zb78xn1-ebc22kwP7SFrfunqcIT9dDBlpvPvCqbbSiUH69QGKe_58iQ
+
+{
+  "shortName": "ASE",
+  "fullName": "Axxxxxxasfads",
+  "holdingPlace": "Shanghai",
+  "submitDeadline": "2019-04-17",
+  "publishTime": "2019-06-01",
+  "holdingTime": "2019-07-10"
+}
+
+###
+

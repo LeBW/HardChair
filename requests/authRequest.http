@@ -27,20 +27,3 @@ GET http://localhost:8080/welcome
 Accept: application/json
 
 ###
-GET http://localhost:8080/conferences
-Accept: application/json
-
-###
-POST http://localhost:8080/conferences
-Content-Type: application/json
-
-{
-  "shortName": "ASE",
-  "fullName": "Axxxxxxasfads",
-  "holdingPlace": "Shanghai",
-  "submitDeadline": "2019-04-17",
-  "publishTime": "2019-06-01",
-  "holdingTime": "2019-07-10"
-}
-
-###

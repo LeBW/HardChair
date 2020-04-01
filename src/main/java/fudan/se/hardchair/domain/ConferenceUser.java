@@ -1,25 +1,21 @@
 package fudan.se.hardchair.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@IdClass(ConferenceUserId.class)
 public class ConferenceUser implements Serializable {
     @Id
     @ManyToOne
-    @JsonIgnoreProperties("conferenceUserSet")
     private Conference conference;
 
     @Id
     @ManyToOne
-    @JsonIgnoreProperties("conferenceUserSet")
     private User user;
 
     private String userRole;
@@ -33,6 +29,7 @@ public class ConferenceUser implements Serializable {
 
     public void setConference(Conference conference) {
         this.conference = conference;
+        conference.addConferenceUser(this);
     }
 
     public User getUser() {
@@ -41,6 +38,7 @@ public class ConferenceUser implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+        user.addConferenceUser(this);
     }
 
     public String getUserRole() {
@@ -51,18 +49,4 @@ public class ConferenceUser implements Serializable {
         this.userRole = userRole;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ConferenceUser that = (ConferenceUser) o;
-        return Objects.equals(conference.getId(), that.conference.getId()) &&
-                Objects.equals(user.getId(), that.user.getId()) &&
-                Objects.equals(userRole, that.userRole);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(conference.getId(), user.getId(), userRole);
-    }
 }

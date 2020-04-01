@@ -1,6 +1,6 @@
 package fudan.se.hardchair.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -32,7 +32,7 @@ public class Conference {
     private Date holdingTime;
 
     @OneToMany(mappedBy = "conference", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("conference")
+    @JsonIgnore
     private Set<ConferenceUser> conferenceUserSet = new HashSet<>();
 
     public Conference() {
@@ -100,5 +100,9 @@ public class Conference {
 
     public void setConferenceUserSet(Set<ConferenceUser> conferenceUserSet) {
         this.conferenceUserSet = conferenceUserSet;
+    }
+
+    public void addConferenceUser(ConferenceUser conferenceUser) {
+        conferenceUserSet.add(conferenceUser);
     }
 }
