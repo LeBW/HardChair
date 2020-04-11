@@ -27,7 +27,6 @@ public class HardChairApplication {
             public void run(String... args) throws Exception {
                 // Create authorities if not exist.
                 Authority adminAuthority = getOrCreateAuthority("Admin", authorityRepository);
-                Authority chairAuthority = getOrCreateAuthority("User", authorityRepository);
 
                 // Create a admin if not exists.
                 if (userRepository.findByUsername("admin") == null) {
